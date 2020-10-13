@@ -28,7 +28,9 @@
         </section><br>
          <div class="container">
          <div class="row">
+             
             <%
+                out.println(""+request.getParameter("firstname"));
                 Connection con=null;
                 Statement pt=null;
                

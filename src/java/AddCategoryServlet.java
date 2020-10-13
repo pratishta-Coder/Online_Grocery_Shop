@@ -27,8 +27,10 @@ public class AddCategoryServlet extends HttpServlet {
   private String dbURL = "jdbc:mysql://localhost:3306/grocerydatabase";
     private String dbUser = "root";
     private String dbPass = "";
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         String firstName = request.getParameter("firstName");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
@@ -42,6 +44,7 @@ public class AddCategoryServlet extends HttpServlet {
             out.println("<h1>Servlet AddCategoryServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
+            request.setAttribute(firstName);
         } finally {
             out.close();
         }
@@ -103,6 +106,7 @@ public class AddCategoryServlet extends HttpServlet {
             if (row > 0) {
                 message="File uploaded and saved into database";
                 response.sendRedirect("AddCategory_Form.jsp");
+                
             }
          }
          catch (SQLException ex)
