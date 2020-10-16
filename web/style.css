@@ -120,11 +120,14 @@ box-shadow: 1px 20px 151px 103px rgba(0,0,0,0.75);
    /*positio;*/
 }
 .card-img-top{
-    height:13rem;
-   width:12rem;
-   /* position:relative;*/
+  height:15rem;
+  width:100%;
 }
-
+.card-body{
+    background:beige;
+    text-align: center;
+    color:#990033;
+}
 /*.categories .card-img-top
 {
     height:13rem;

@@ -15,7 +15,7 @@
     </head>
     <body>
     <header>
-          <%@include file="common/nav_bar.jsp"%>
+        <%@include file="common/nav_bar.jsp"%>
     </header>
     <br>    
     <div class="container">
@@ -27,7 +27,7 @@
           </div>
         <div class="card-body">
         <form class ="inner-group"  method="post" action="./AddCategoryServlet" enctype="multipart/form-data">
-            <table border="0">
+            <!--<table border="0">-->
                 <div class="form-group">
                     <label>Category Name</label>
                     <input type="text" class="form-control" name="firstName" size="50" placeholder="Enter the Category Name"required/>
@@ -41,13 +41,17 @@
                     <input type="file" class="form-control" name="photo" size="50" required/>
                 </div>                  
                <center><button type="submit" class="btn btn-success" value="submit" name="category_add">Save</button></center>  
-            </table>
+           <!-- </table>-->
          </form>
          </div>
        </div>
       </div>
      </div>
     </div>
+      <%
+       String category=request.getParameter("message");
+       out.println(category);
+      %>
    </body>
 </html>
 

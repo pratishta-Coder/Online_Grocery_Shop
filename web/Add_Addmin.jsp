@@ -18,7 +18,7 @@
        </header>
        <br>
        <section class="category">
-           <center><h3>Add ADMIN</h3></center>
+           <center><h3>Add Admin</h3></center>
         </section><br>
          <!--start of container-->
           <div class="container">
