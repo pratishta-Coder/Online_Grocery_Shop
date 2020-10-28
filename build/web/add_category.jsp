@@ -18,89 +18,45 @@
          <link rel="stylesheet" type="text/css" href="style.css">
     </head>   
     <body>
-        <header>
+         <header>
+            <!--included nav-bar using include directive-->
             <%@include file="common/nav_bar.jsp"%>
-       </header>
-       <br>
-        <div class="container">
+        </header>
+        <br>
         <section class="category">
-           <center><h3>Categories</h3></center>
+          <center><h3>Categories</h3></center>
         </section><br>
-         <div class="container">
-         <div class="row">
-             
-            <%
-                out.println(""+request.getParameter("firstname"));
-                Connection con=null;
-                Statement pt=null;
-               
-                Blob image=null;
-               
-                ResultSet rs=null;
-               InputStream inputstream=null;
-               ByteArrayOutputStream output=new ByteArrayOutputStream();
-               byte[] imagedata=new byte[4096];
-               int byteRead=-1; 
-               String base=null;
-            //   OutputStream img=null;
-              try{
+        <div class="container">
+        <div class="row">
+         <%
+             Connection con=null;
+             Statement pt=null;
+             ResultSet rs=null;
+             try{
                    Class.forName("com.mysql.jdbc.Driver");
                    con=DriverManager.getConnection("jdbc:mysql://localhost:3306/grocerydatabase?zeroDateTimeBehavior=convertToNull","root","");
                    pt=con.createStatement();
                    rs=pt.executeQuery("select * from category");
-                     String descript="";
-                     String category="";
+                   String category="";
                    while(rs.next())
                    {
-                       if(rs.next())
-                     {
                        category=rs.getString(1);
-                       out.println(category);
-                       image=rs.getBlob(2);
-                       inputstream=image.getBinaryStream();
-                       while((byteRead=inputstream.read(imagedata))!=-1)
-                       {
-                           output.write(imagedata,0,byteRead);
-                           %>
-                          
-            <%
-                          
-                       }
-                    // imagedata=image.getBytes(1,(int)image.length());
-                     byte[] imageBytes=output.toByteArray();
-                     base=Base64.getEncoder().encodeToString(imageBytes);
-                       descript=rs.getString(3);
-                       inputstream.close();
-                       
-                    // out.println(imagedata);
-                     
-                      //out.println(descript);
-                     }
-                       else 
-                       {
-                           out.println("data not found");
-                       }
-                     // response.setContentType("image/png");
-                   //   img=response.getOutputStream();
-                      
-                   %>
+                   %> 
                    
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-10 d-block m-auto col-mt-5"> 
-                    <a href="#">
-                    <div class="card">
-                     <img class="card-img-top" src="<%out.print(base);%>">
-                    <div class="card-body">
-                      <h1 class="card-title"><%=category%></h1>
-                    </div>
-                   </div>
-                  </a>
-               </div>
-              </div>  
-             </div>
-                <%
-                  //  img.flush();
-                    //img.close();
-                }
+                   <div class="col-lg-3 col-md-3 col-sm-12 col-10 d-block m-auto"><br>
+                     <div class="card">
+                      <img class="card-img-top categori" src="getimage.jsp?category=<%=category%>"/>
+                        <div class="card-body product_category">
+                           <h4 class="card-title"><%=category%></h4>
+                           <a href="edit_category.jsp?category=<%=category%>" class="btn btn-success" name="edit"><i class="fa fa-edit" style="font-size:22px">edit</i></a>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="delete_category.jsp?category=<%=category%>" class="btn btn-danger" name="delete"><i class="fa fa-trash-o" style="font-size:22px">delete</i></a>
+                     </div>
+                     </div>
+                  </div>
+                     
+                 <%}
+                  rs.close();
+                  pt.close();
                   con.close(); 
               }
               catch(Exception e)
@@ -108,20 +64,23 @@
                   out.println(e);
               }
               finally {
-try {
-rs.close();
-pt.close();
-con.close();
-} catch (SQLException e) {
-e.printStackTrace();
-}
-}
+                        try {
+                        rs.close();
+                        pt.close();
+                        con.close();
+                        }
+                     catch (SQLException e) {
+                      e.printStackTrace();
+                }
+             }
             %>
-             <div class="container">
+          </div>
+          </div>  
+         <br><br>
+         <div class="container">
             <form class="inner-group" action="AddCategory_Form.jsp">
-                <button type="submit" class="btn btn-success" name="submit"> Add New Category</button>
+              <center> <button type="submit" class="btn btn-primary" name="submit">Add New Category</button></center>
            </form>
-        </div>
-        </div>
+         </div>
     </body>
 </html>

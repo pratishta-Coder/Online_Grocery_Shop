@@ -30,7 +30,6 @@ public class AddCategoryServlet extends HttpServlet {
    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String firstName = request.getParameter("firstName");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
@@ -44,7 +43,7 @@ public class AddCategoryServlet extends HttpServlet {
             out.println("<h1>Servlet AddCategoryServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-            request.setAttribute(firstName);
+            
         } finally {
             out.close();
         }
@@ -85,11 +84,12 @@ public class AddCategoryServlet extends HttpServlet {
             System.out.println(filePart.getSize());
             System.out.println(filePart.getContentType());
             inputStream = filePart.getInputStream();
-
         }
           Connection conn = null; // connection to the database
           String message = null;
-       try {
+          int row=0;
+       try 
+       {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
             String sql = "INSERT INTO category (Category_Name,Category_img,Description)VALUES(?, ?, ?)";
@@ -102,22 +102,18 @@ public class AddCategoryServlet extends HttpServlet {
                 // fetches input stream of the upload file for the blob column
                 statement.setBlob(2, inputStream);
             }
-            int row = statement.executeUpdate();
+            row = statement.executeUpdate();
             if (row > 0) {
-                message="File uploaded and saved into database";
-                response.sendRedirect("AddCategory_Form.jsp");
-                
+              response.sendRedirect("AddCategory_Form.jsp?message=File Uploaded and saved into database successfully..");   
             }
+           
          }
-         catch (SQLException ex)
+         catch (Exception e)
          {
-            message = "ERROR: " + ex.getMessage();
-            ex.printStackTrace();
+            message = "ERROR: " + e.getMessage();
+            e.printStackTrace();
          } 
-        catch (ClassNotFoundException ex) { 
-          Logger.getLogger(AddCategoryServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        /* finally 
+         finally 
          {
              if (conn != null) {
                 // closes the database connection
@@ -127,11 +123,11 @@ public class AddCategoryServlet extends HttpServlet {
                     ex.printStackTrace();
                 }
           }
-         request.setAttribute("Message", message);
+        // request.setAttribute("Message", message);
              
             // forwards to the message page
            //getServletContext().getRequestDispatcher("/confirmationMessage.jsp").forward(request, response);
-        }  */  
+        }   
         processRequest(request, response);
     }
 

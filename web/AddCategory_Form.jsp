@@ -22,11 +22,11 @@
      <div class="row">
        <div class="col-lg-8 col-md-10 col-sm-10 col-10 d-block">
        <div class="card">
-          <div class="card-header bg-primary" style="color:white;">
+       <div class="card-header bg-primary" style="color:white;">
              <center>Add New Category Form</center>
-          </div>
+       </div>
         <div class="card-body">
-        <form class ="inner-group"  method="post" action="./AddCategoryServlet" enctype="multipart/form-data">
+         <form class ="inner-group"  method="post" action="./AddCategoryServlet" enctype="multipart/form-data">
             <!--<table border="0">-->
                 <div class="form-group">
                     <label>Category Name</label>
@@ -43,15 +43,11 @@
                <center><button type="submit" class="btn btn-success" value="submit" name="category_add">Save</button></center>  
            <!-- </table>-->
          </form>
-         </div>
+        </div>
        </div>
       </div>
      </div>
     </div>
-      <%
-       String category=request.getParameter("message");
-       out.println(category);
-      %>
    </body>
 </html>
 

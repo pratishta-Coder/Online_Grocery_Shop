@@ -14,7 +14,7 @@
     </head>
     <body>
        <%
-         String category=request.getParameter("category");
+        String category=request.getParameter("category");
         Connection con=null;
         try{
             Class.forName("com.mysql.jdbc.Driver");

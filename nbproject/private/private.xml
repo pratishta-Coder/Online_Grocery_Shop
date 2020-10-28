@@ -4,8 +4,26 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/src/java/AddCategoryServlet.java</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/NewAdmin.jsp</file>
             <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/add_category.jsp</file>
             <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/AddCategory_Form.jsp</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/delete_category.jsp</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/edit_product.jsp</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/src/java/AddProductServlet.java</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/login.jsp</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/delete_product.jsp</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/src/java/Update_Product.java</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/index.jsp</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/edit_category.jsp</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/src/java/Update_Category.java</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/logindata.jsp</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/common/nav_bar.jsp</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/Add_Addmin.jsp</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/Addproduct_Form.jsp</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/style.css</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/getimage.jsp</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/getimage_product.jsp</file>
+            <file>file:/C:/Users/Shree/Documents/NetBeansProjects/Online_Book_Store/web/AddProduct.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -16,7 +16,7 @@
                 <a class="nav-link text-white " href="add_category.jsp">Category<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white">Product</a>
+                <a class="nav-link text-white" href="AddProduct.jsp">Product</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white">Sell-History</a>

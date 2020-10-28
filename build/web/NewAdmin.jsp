@@ -24,7 +24,6 @@
          int rs=st.executeUpdate("INSERT INTO login(username,password)VALUES('"+id+"','"+pass+"')");
          if(rs!=0)
          {
-             out.println("alert('New Admin added successfully..')");
              response.sendRedirect("Add_Addmin.jsp");
          }
          else
