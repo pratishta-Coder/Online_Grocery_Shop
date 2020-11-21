@@ -22,18 +22,18 @@
                         <img class="rounded mx-auto d-block img" style="width:150px;" src="img/l2.gif">
                         <div class="form-group">
                             <!--label class="text-white">Username:</label-->
-                            <input type="email" class="form-control" name="username" placeholder="LOGIN ID">
+                            <input type="text" class="form-control" name="username" placeholder="LOGIN ID" required/>
                         </div>
                         <div class="form-group">
                             <!--label class="text-white">Password:</label-->
-                            <input type="password" class="form-control" name="password" placeholder="PASSWORD">
+                            <input type="password" class="form-control" name="password" placeholder="PASSWORD" required/>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Login
                             
                         </button>
                         
                         <div class="col-12 forgot">
-                        <a href="#">Forget password?</a>                        
+                        <a href="ForgotPassword.jsp">Forget password?</a> 
                     </div>
                     </form>
                 </div>

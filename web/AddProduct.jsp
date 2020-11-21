@@ -28,9 +28,10 @@
         <!--show categories-->
         <div class="col-lg-3 col-md-2 col-sm-3 col-10 d-block">
         <div class="list-group mt-2">
-         <a href="AddProduct.jsp?cate=all" class="list-group-item list-group-item-action active">
+            <a href="#" class="list-group-item list-group-item-action active"><i class="fa fa-bars" style="font-size:22px">Categories</i></a>
+            <a href="AddProduct.jsp?cate=all" class="list-group-item list-group-item-action">
              All Products
-         </a> 
+            </a> 
          <%
              
              Connection con=null;
@@ -41,8 +42,8 @@
                    con=DriverManager.getConnection("jdbc:mysql://localhost:3306/grocerydatabase?zeroDateTimeBehavior=convertToNull","root","");
                    pt=con.createStatement();
                    String category="";
-                   rs=pt.executeQuery("select * from product");
-                  while(rs.next())
+                   rs=pt.executeQuery("select * from category");
+                   while(rs.next())
                    {
                        category=rs.getString(1);
                    %> 
@@ -62,14 +63,14 @@
              </div>
               <!--show products depend on category-->
              <br>
-              <div class="col-lg-9 col-md-8 col-sm-12 col-10 d-block m-auto"> 
+             <div class="col-lg-9 col-md-8 col-sm-12 col-10 d-block"> 
               <%if(request.getParameter("cate")==null)
                   {%>
-                  <h2 style="color:purple;margin-left:15rem"><%out.println("all");%></h2>
+                  <h2 style="color:brown;margin-left:15rem;margin-top:5px;"><%out.println("all");%></h2>
                   <%}
-                    else
-                    {%>
-                    <h2 style="color:purple;margin-left:16rem"><%=request.getParameter("cate")%></h2>
+                  else
+                  {%>
+                  <h2 style="color:brown;margin-left:15rem;margin-top:5px;"><%=request.getParameter("cate")%></h2>
              <%}%>
               <div class="row mt-3">
               <div class="col-lg-12 col-md-10 col-lg-12 col-sm-8 col-10 d-block m-auto"> 
@@ -99,7 +100,7 @@
                     <div class="card cate">
                       <img class="card-img-top categori" src="getimage_product.jsp?product=<%=product%>"/>
                        <div class="card-body">
-                          <h5 class="card-title" style="color:purple">&nbsp;<%=product%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8377;<%=price%></h5>
+                           <h5 class="card-title" style="color:purple"><%=product%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8377;<%=price%></h5>
                            &nbsp;<a href="edit_product.jsp?product=<%=product%>" class="btn btn-success" name="edit"><i class="fa fa-edit" style="font-size:22px">edit</i></a>
                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="delete_product.jsp?product=<%=product%>" class="btn btn-danger" name="delete"><i class="fa fa-trash-o" style="font-size:22px">delete</i></a>
                        </div>
@@ -120,13 +121,15 @@
          </div> 
         </div>
         </div>
-        </div>
-        <br><br>
+        </div>   
         <div class="container">
-            <form class="inner-group" action="Addproduct_Form.jsp">
+          <form class="inner-group" action="Addproduct_Form.jsp">
               <center> <button type="submit" class="btn btn-primary" name="submit">Add New Product</button></center>
-           </form>
+          </form>
         </div>
+          <footer>
+           <%@include file="footer.jsp"%>     
+       </footer>
     </body>
 </html>
         

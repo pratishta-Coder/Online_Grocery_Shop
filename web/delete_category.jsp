@@ -29,7 +29,26 @@
             }
             else
             {
-              System.out.println("error occured");  
+               try{
+                    con.close();
+                    Class.forName("com.mysql.jdbc.Driver");
+                   con=DriverManager.getConnection("jdbc:mysql://localhost:3306/grocerydatabase?zeroDateTimeBehavior=convertToNull","root","");
+                   st=con.createStatement();
+                   int j=st.executeUpdate("delete from category where Category_Name='"+category+"'");
+                    if(j>0)
+                    {
+                          response.sendRedirect("add_category.jsp");
+                    }
+                    else
+                    {
+                        out.println("error occured");
+                    }
+               }
+               catch(Exception e)
+               {
+                    e.printStackTrace();
+               }
+             
             }
             con.close();
            

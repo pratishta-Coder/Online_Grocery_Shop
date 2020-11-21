@@ -9,12 +9,12 @@
        ResultSet rs=st.executeQuery("select * from login where username='"+username+"'and password='"+psd+"'");
        if(rs.next())
        {
-           response.sendRedirect("Add_Addmin.jsp");
+           response.sendRedirect("Add_Addmin.jsp?user="+username+"");
        }
        else
        {
            response.sendRedirect("login.jsp");
-           out.println("alert('usename or password incorrect!!')");
+           //out.println("alert('usename or password incorrect!!')");
       // out.println("location='login.jsp';");
        }
     }

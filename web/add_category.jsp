@@ -82,5 +82,8 @@
               <center> <button type="submit" class="btn btn-primary" name="submit">Add New Category</button></center>
            </form>
          </div>
+          <footer>
+           <%@include file="footer.jsp"%>     
+       </footer>
     </body>
 </html>

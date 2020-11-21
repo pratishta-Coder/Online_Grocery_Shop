@@ -44,7 +44,7 @@
         %>
     <div class="container">
     <div class="row">
-     <div class="col-lg-8 col-md-10 col-sm-10 col-10 d-block">
+     <div class="col-lg-8 col-md-10 col-sm-10 col-10 d-block mx-auto">
        <div class="card">
        <div class="card-header bg-primary" style="color:white;">
              <center>Edit Category Form</center>
@@ -65,7 +65,8 @@
                     <label>Image</label> 
                     <input type="file" class="form-control" name="photo" size="50" required/>
                 </div>                  
-               <center><button type="submit" class="btn btn-success" value="submit" name="category_update">Edit</button></center>  
+                <center><a href="add_category.jsp" class="btn btn-outline-success">Back</a>&nbsp;&nbsp;&nbsp;&nbsp;
+               <button type="submit" class="btn btn-success" value="submit" name="category_update">Edit</button></center>  
            <!-- </table>-->
          </form>
         </div>

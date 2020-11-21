@@ -7,7 +7,7 @@
         <a class="navbar-brand text-warning font-weight-bold" href="#">Online Grocery Store</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link text-white " href="">HOME <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white " href="index.jsp">HOME <span class="sr-only">(current)</span></a>
             </li>
              <li class="nav-item active">
                 <a class="nav-link text-white " href="Add_Addmin.jsp">Add Admin<span class="sr-only">(current)</span></a>
@@ -19,11 +19,12 @@
                 <a class="nav-link text-white" href="AddProduct.jsp">Product</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white">Sell-History</a>
+                <a class="nav-link text-white" href="sell_history.jsp">Sell-History</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">CONTACT</a>
+                <a class="nav-link text-white" href="adminprofile.jsp">Admins Info</a>
             </li>
+          
         </ul>
     <!--SEARCH SECTION-->
     

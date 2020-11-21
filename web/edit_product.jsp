@@ -17,7 +17,7 @@
         <header>
         <%@include file="common/nav_bar.jsp"%>
     </header>
-    <br>  
+    
         <%
            String product=request.getParameter("product");
            Connection con=null;
@@ -49,27 +49,28 @@
           e.printStackTrace();
         }
         %>
-    <div class="container">
-    <div class="row">
-     <div class="col-lg-8 col-md-10 col-sm-10 col-10 d-block">
-       <div class="card">
-       <div class="card-header bg-primary" style="color:white;">
-             <center>Edit Product Form</center>
-       </div>
-        <div class="card-body">
-        <form class ="inner-group"  method="post" action="./Update_Product" enctype="multipart/form-data">
-          <div class="form-group">
+          <br> 
+          <div class="container">
+           <div class="row">
+             <div class="col-lg-8 col-md-10 col-sm-10 col-10 d-block mx-auto">
+               <div class="card">
+               <div class="card-header bg-primary" style="color:white;">
+                     <center>Edit Product Form</center>
+               </div>
+             <div class="card-body">
+                <form class ="inner-group"  method="post" action="./Update_Product" enctype="multipart/form-data">  
+                  <div class="form-group">
                     <label>Category Name</label>
                     <input type="text" class="form-control" name="category" value="<%=category%>" size="50" placeholder="Enter the Category Name..."required/>
-                </div> 
+                   </div> 
               <div class="form-group">
                     <label>Product Name</label>
                     <input type="text" class="form-control" name="product" size="50" value="<%=product%>" placeholder="Enter the Product Name..."required/>
-                     <input type="text" class="form-control" name="old_product" size="50" value="<%=product%>" placeholder="Enter the Product Name..." hidden="true"/>
+                    <input type="text" class="form-control" name="old_product" size="50" value="<%=product%>" placeholder="Enter the Product Name..." hidden="true"/>
                 </div>
                 <div class="form-group">
                     <label>Available Quantity</label>
-                    <input type="text" class="form-control" name="quantity" size="50" value="<%=quantity%>" placeholder="Enter the Quantity..." required/>
+                    <input type="number" class="form-control" name="quantity" size="50" value="<%=quantity%>" placeholder="Enter the Quantity..." required/>
                 </div>
                 <div class="form-group">
                     <label>Unit</label>
@@ -86,7 +87,7 @@
                 </div>
                 <div class="form-group">
                     <label>price</label>
-                    <input type="text" class="form-control" value="<%=price%>" name="price" size="50" placeholder="Enter the price..."required/>
+                    <input type="number" class="form-control" value="<%=price%>" name="price" size="50" placeholder="Enter the price..."required/>
                  </div>
                 <div class="form-group">
                     <label>Description</label>
@@ -95,9 +96,10 @@
                 <div class="form-group">
                     <label>Image</label> 
                     <input type="file" class="form-control" name="photo" size="50" required/>
-                </div>                  
-               <center><button type="submit" class="btn btn-success" value="submit" name="product_add" id="displaymsg">Edit</button></center> 
-         </form>
+                </div>
+                <center><a href="AddProduct.jsp" class="btn btn-outline-success">Back</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+                <button type="submit" class="btn btn-success" value="submit" name="product_add" id="displaymsg">Edit</button></center>       
+        </form>
         </div>
        </div>
       </div>

@@ -3,61 +3,65 @@
     Created on : 24-Sep-2020, 4:03:46 pm
     Author     : Shree
 --%>
-
+<%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Online Grosory Shop</title>
         <link rel="stylesheet" href="style.css">
         <%@include file="common/bootstrap_cdn.jsp"%>
     </head>
     <body>
     <header>
-     <!--STARTING OF NAV BAR-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+     <!--including NAV BAR-->
+      <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <a class="navbar-brand text-warning font-weight-bold" href="#">Online Grocery Store</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link text-white " href="#">HOME <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white " href="index.jsp">HOME <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white">PRODUCT</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">CONTACT</a>
+                <a class="nav-link text-white" href="user_product.jsp">PRODUCT</a>
             </li>
         </ul>
     <!--SEARCH BAR INSIDE NAV-->
-        <form class="form-inline" >
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search">&nbsp;
-            <button class="btn btn-outline-success" type="submit">
-            <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
+        <form class="form-inline col-lg-5 col-md-5 col-sm-10 col-10 p-2" method="POST" action="search_category.jsp">
+          <input class="form-control" name="search1" id="search" type="search" placeholder="Search for category..." aria-label="Search" style="width:70%">
+          <button class="btn btn-outline-success" type="submit" id="search_data">
+             <i class="fa fa-search" aria-hidden="true"></i>
+         </button>
         </form>
         <!--LOGIN AND REGISTER SECTION-->
         <div class="navbar-nav navbar-right">
-         <li>
+          <li class="navbar-nav mt-2 mt-sm-0">&nbsp;
+             <a class="nav-link" href="#!" data-toggle="modal" data-target="#cart"><i class="fa fa-cart-plus" style="font-size:25px;color:white;"></i><span class="ml-2 cart-items" style="font-size:19px;color:white;">( 0 )</span></a>
+          </li>
+         <li  class="navbar-nav mt-2 mt-sm-0">
               <form class="form-inline" action="login.jsp">
                 <!--button type="submit">Click me</button-->
             &nbsp;<button type="submit" class="btn btn-primary">
                  <i class="fa fa-sign-in"></i>&nbsp;LOGIN&nbsp;
-                    </button>
+                 </button>
               </form>
-         </li>
-         <form class="form-inline" action="Registration.jsp">
-         <li class="navbar-nav mr-auto mt-2 mt-sm-0">&nbsp;
+          </li>
+          <li class="navbar-nav mt-2 mt-sm-0">&nbsp;
+              <form class="form-inline" action="customer_Registration.jsp">
              <button type="submit" class="btn btn-warning">REGISTER HERE
              <i class="fa fa-hand-o-left"></i>
              </button>
-         </form>>
-         </li>
-     </div>
-    </nav>
-   <!--ENDING OF NAV BAR-->
+         </form>
+          </li>
+       </div> 
+      </nav> 
+      <center><div class="list-group col-lg-5 col-md-5" id="show-list" style="position:relative;margin-top:-10px;width:27.5%;margin-left:-6rem;">        
+      </div>
+      </center>
     </header>
-    <!--BOOTSTRAP CAROUSEL SECTION-->
+        
+     <%@include file="common_cart.jsp"%>
+     <!--BOOTSTRAP CAROUSEL SECTION-->
       <div id="myslideshow" class="carousel slide" data-ride="carousel">
            <!--adding of indicators to jump to any image in carousel-->
             <ol class="carousel-indicators">
@@ -109,112 +113,86 @@
            </a>
            <!--ending of previous and next button in carousel-->
        </div>
-         <!--end bootstrap carousel-->   
-     <form action="art.jsp" method="post">
-       <div class="container main">
-        <center><h2><b>Categories</b></h2></center><br>
-        <div class="row">   
-            <div class="col-lg-3 col-md-3 col-sm-12 col-10 d-block m-auto"> 
-            <a href="art.jsp">
-            <div class="card">
-                <img class="card-img-top" src="img/studio.jpg">
-                <div class="card-body">
-                    <h3 class="card-title">Art</h3>
-                </div>
-            </div>
-            </a>
-           </div>
-           <div class="col-lg-3 col-md-3 col-sm-12 col-10 d-block m-auto"> 
-            <a href="#">
-                <div class="card">
-                    <img class="card-img-top" src="img/c2.jpg">
-                    <div class="card-body">
-                      <h3 class="card-title">Business & Economies</h3>
-                    </div>
-                </div>
-            </a>
-           </div>
-            <div class="col-lg-3 col-md-3 col-sm-12 col-10 d-block m-auto">
-             <a href="#">
-                <div class="card">
-                    <img class="card-img-top" src="img/c2.jpg">
-                    <div class="card-body">
-                      <h3 class="card-title">Travelling</h3>
-                    </div>
-                </div>
-            </a>
-            </div>
-           </div>
-            <br><br>
-         <div class="row">
-           <div class="col-lg-3 col-md-3 col-sm-12 col-10 d-block m-auto">
-            <a href="#">
-            <div class="card">
-                <img class="card-img-top" src="img/studio.jpg">
-                <div class="card-body">
-                    <h3 class="card-title">Crafts & Hobies</h3>
-                </div>
-            </div>
-            </a>
-           </div>
-           <div class="col-lg-3 col-md-3 col-sm-12 col-10 d-block m-auto"> 
-            <a href="#">
-                <div class="card">
-                    <img class="card-img-top" src="img/c2.jpg">
-                    <div class="card-body">
-                      <h3 class="card-title">Fairy Tailes</h3>
-                    </div>
-                </div>
-            </a>
-           </div>
-            <div class="col-lg-3 col-md-3 col-sm-12 col-10 d-block m-auto">
-             <a href="#">
-                <div class="card">
-                    <img class="card-img-top" src="img/c2.jpg">
-                    <div class="card-body">
-                      <h3 class="card-title">Humanities</h3>
-                    </div>
-                </div>
-            </a>
-           </div>
-         </div>
-        <br><br>
-        <div class="row">
-           <div class="col-lg-3 col-md-3 col-sm-12 col-10 d-block m-auto">
-            <a href="#">
-            <div class="card">
-                <img class="card-img-top" src="img/studio.jpg">
-                <div class="card-body">
-                    <h3 class="card-title">Social Sciences</h3>
-                </div>
-            </div>
-            </a>
-           </div>
-           <div class="col-lg-3 col-md-3 col-sm-12 col-10 d-block m-auto"> 
-            <a href="#">
-                <div class="card">
-                    <img class="card-img-top" src="img/c2.jpg">
-                    <div class="card-body">
-                      <h3 class="card-title">Medicine</h3>
-                    </div>
-                </div>
-            </a>
-           </div>
-            <div class="col-lg-3 col-md-3 col-sm-12 col-10 d-block m-auto">
-             <a href="#">
-                <div class="card">
-                    <img class="card-img" src="img/c2.jpg">
-                    <div class="card-body">
-                      <h3 class="card-title">Action & Adventure</h3>
-                    </div>
-                </div>
-             </a>
-            </div>
+  
+         <!--end bootstrap carousel-->
+         <br>
+        <!--categories section-->
+         <div><center><h3 class="cate_name" style="color:palevioletred;font-family:Arial;font-weight:bold"><u>Categories</u></h3></center></div>
+         
+         <div class="container">  
+          <div class="row" id="result">   
           </div>
-        </div>
-         </form>
-       </section>
-
+         </div>
+         
+         <div class="container">
+         <div class="row">
+         <%
+             Connection con=null;
+             Statement st=null;
+             ResultSet re=null;
+             String category="";
+             try{
+                 Class.forName("com.mysql.jdbc.Driver");
+                 con=DriverManager.getConnection("jdbc:mysql://localhost:3306/grocerydatabase?zeroDateTimeBehavior=convertToNull","root","");
+                 st=con.createStatement();
+                 re=st.executeQuery("select * from category");
+                 while(re.next())
+                 {
+                     category=re.getString("Category_Name");
+                 %>
+                
+                 <div class="col-lg-4 col-md-3 col-sm-10 col-12 d-block m-auto"><br>
+                  <a href="user_product.jsp?cate=<%=category%>">
+                   <div class="card">
+                    <img class="card-img-top categori" src="getimage.jsp?category=<%=category%>"/>
+                    <div class="card-body product_category">
+                        <h4 class="card-title" style="color:#009900"><center><%=category%></center></h4>
+                    </div>
+                 </div> 
+                 </a>
+                 </div>
+               
+                 <%}
+            }
+             catch(Exception e)
+             {
+               e.printStackTrace();
+             }
+           %>
+     
        <!--ending categories section-->
+        </div>
+       </div>
+       <br>
+       <footer>
+           <%@include file="footer.jsp"%>     
+       </footer>
+        <script type="text/javascript">
+         $(document).ready(function(){
+           $("#search").keyup(function(){
+            var searchText=$(this).val();
+            if(searchText!=''){
+                $.ajax({
+                    url:'action.jsp',
+                    method:'post',
+                    data:{query:searchText},
+                    success:function(response){
+                      $("#show-list").html(response);  
+                    }
+                });
+            }
+            else
+            {
+                $("#show-list").html('');
+            }
+           });
+           $(document).on('click','a',function(){
+               $("#search").val($(this).text());
+               $("#show-list").html('');
+           });       
+         });
+        
+        
+       </script>
    </body>
 </html>

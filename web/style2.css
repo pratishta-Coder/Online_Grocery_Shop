@@ -1,0 +1,18 @@
+#message{
+    visibility:hidden;
+    font-size:20px;
+    font-weight:bold;
+    margin-top:10px;
+    color:#33cc00;
+}
+#message.disp{
+    visibility:visible;
+}
+
+.padding{
+    padding:5rem !important;
+}
+.form-control:focus{
+    box-shadow: 10px 0px 0px 0px #fff !important;
+    border-color:#4ca746;
+}
