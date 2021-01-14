@@ -41,8 +41,7 @@
                 int row = statement.executeUpdate();
                 if (row > 0) {
                     //message = "File uploaded and saved into database";
-                    request.setAttribute("message","true");
-                    response.sendRedirect("customer_Registration.jsp");
+                    response.sendRedirect("customer_register.jsp?message=true");
                 }
 
             }

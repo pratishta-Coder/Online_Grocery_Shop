@@ -12,25 +12,50 @@
         <link rel="stylesheet" type="text/css" href="style.css">  
         <%@include file="common/bootstrap_cdn.jsp"%> <!--including bootstrap cdn-->
     </head>
-    <body>
+    <!--javascript function for form validation-->
+    <script type="text/javascript">
+      function data_validate()
+      {
+        var phone = document.forms["RegForm"]["mobile_no"];
+        var password = document.forms["RegForm"]["password1"]; 
+        var conpass = document.forms["RegForm"]["confirm_pass"]; 
+      
+   
+        if (phone.value.length>10 || phone.value.length<10) { 
+           document.getElementById('mobile').innerHTML = "**Mobile no length must be atleast 10 digits";  
+            return false; 
+        } 
+         if(password.value.length < 8 || password.value.length>15) {  
+            document.getElementById('pswd').innerHTML = "**Password length must be 8 characters to 15 characters and it should contain 1 digit and special symbol";  
+             return false;  
+        } 
+       
+        if(password.value!=conpass.value)
+        {
+           document.getElementById('con_pswd').innerHTML="**Should same to password ";
+          return false;    
+        }    
+    } 
+  </script>
+    <body style="background-color:lightsteelblue;">
         <header>
           <%@include file="common/nav_bar.jsp"%>  <!--including nav-bar here-->
         </header>
         <br>
         <section class="category">
            <center><h3>Add Admin</h3></center>
-        </section><br>
-         <!--start of container-->
-         <div id="message"><center>New Admin added successfully!!!</center></div>
+        </section>
+         <!--start of container
+         <div id="message"><center>New Admin added successfully!!!</center></div>-->
           <div class="container py-3">
-            <div class="row">
-            <div class="col-lg-8 col-md-10 col-sm-10 col-10 d-block mx-auto"> 
+           <div class="row">
+            <div class="col-lg-7 col-md-10 col-sm-10 col-10 d-block mx-auto mt-1"> 
             <!--starting of card-->
             <div class="card">
-            <div class="card-header bg-primary" style="color:white"><center>ADD NEW ADMIN FORM</center></div>
+            <div class="card-header bg-success" style="color:white"><center>ADD NEW ADMIN FORM</center></div>
             <div class="card-body">
              <!--form inside card to add new admin-->
-             <form class="inner-group" method="POST" action="NewAdmin.jsp" onsubmit="return validation();">
+             <form class="inner-group" method="POST" action="NewAdmin.jsp" name="RegForm" onsubmit="return data_validate();">
                 <div class="form-group">
                     <label for=firstN">First Name</label>
                     <input type="text"  class="form-control" id="firstn" name="firstname" placeholder="Enter the firstname..." required/>
@@ -55,7 +80,7 @@
                 </div>
                <div class="form-group">
                    <label for="Mobile No">Mobile No</label>
-                   <input type="text" class="form-control" id="mobile" name="mobile_no" placeholder="Enter the mobile no of 10 digit..." required/>
+                   <input type="text" class="form-control" name="mobile_no" placeholder="Enter the mobile no of 10 digit..." required/>
                    <span id="mobile" class="text-danger font-weight-bold"></span> 
                </div>
                <div class="form-group">
@@ -70,55 +95,33 @@
          </div>
          <!--ending of card-->
         </div>
-       </div>   
+       </div>  
+       <br><br>
         <footer>
            <%@include file="footer.jsp"%>     
        </footer>
-       <!--end of container-->
-       <!--applying validation to form fields using javascript-->
-       <script type="text/javascript">   
-           function validation()
-           {
-               var password=document.getElementById("passw").value;
-               var confirm_passw=document.getElementById("confirm_passw").value;
-               var mobile=document.getElementById("mobile").value;
-               var user=document.getElementById("loginid").value;
-               if((password.length<8)||(password.length>12))
-               {
-                   document.getElementById('pswd').innerHTML="*password should be 8 to 12 character long and at least 1 digit and at least 1 special character and at least 1 uppercase and lowercase";
-                   return false;
-               }
-               if(password!=confirm_passw)
-               {
-                   document.getElementById('con_pswd').innerHTML="*Please re-enter correct password";
-                   return false;
-               }
-               if((user.length<=2) || (user.length>15))
-                {
-                    document.getElementById('username').innerHTML="*length should be in between 2 and 15";
-                    return false;
-                }
-            
-               if(mobile.length!=10)
-               {
-                   document.getElementById('mobile').innerHTML="*Mobile No Must be 10 digit number";
-                   return false;
-               }
-          }
-      </script>
-      <!--end of javascript-->
-      <!--code to display message on page after adding new admin -->
+       
+           <!--code to display message on page after adding new admin -->
       <% 
-          String msg=(String)request.getAttribute("message");
-          if(msg=="true")
+          try{
+          String msg=request.getParameter("message");
+          if(msg.equals("true"))
           {%>
             <script type="text/javascript"> 
-             $("#message").addClass("disp");
-             setTimeout(()=>{
-             $("#message").removeClass("disp");
-            },3000); 
+                alert("New admin added successfully!!!");
             </script>
-         <%}
-      %>
+         <%}   
+           else
+            {%>
+               <script type="text/javascript"> 
+                alert("Error occured!");
+              </script>
+           <% }
+        }
+       catch(Exception e)
+       {
+          e.printStackTrace();
+       }
+     %>
     </body>  
 </html>

@@ -6,11 +6,12 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    String pro=(String)session.getAttribute("product");
     String product_name=request.getParameter("product");
     String product_price=request.getParameter("product_price");
     String product_quantity=request.getParameter("product_quan");
     String unit=request.getParameter("unit");
-    String quan=request.getParameter("total_quan");
+    String quan=request.getParameter("totalquantity");
     int productprice=0;
     int productquantity=0;
     int totalquan=0;
@@ -32,8 +33,7 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <%@include file="common/bootstrap_cdn.jsp"%>
     </head>
-    <body>
-         
+    <body style="background-color: cadetblue;">
         <header>
         <%@include file="common_cart.jsp"%>    
         <nav class="navbar navbar-expand-lg navbar-light bg-dark">
@@ -98,7 +98,7 @@
              <div class="col-md-6">
                 <div class="card">
                  <div class="card-body">
-                     <div class="card-header text-center mb-5"><h4>Your Selected Items</h4></div>
+                     <div class="card-header text-center mb-5" style="background-color:#ccff66;"><h4>Your Selected Items</h4></div>
                      <div class="cart-body"> 
                      </div>
                  </div>
@@ -107,11 +107,11 @@
           <!-- user details form for ordering product-->
           <div class="col-md-6">
                 <div class="card">
-                  <div class="card-header text-center mb-2">
+                  <div class="card-header text-center mb-2" style="background-color:sandybrown">
                       <h4>Your details for order</h4>
                   </div>
                  <div class="card-body">
-                     <form name="myform" method="post" action="save_product">
+                     <form name="myform" method="post" action="order.jsp">
                        <input type="text" class="form-control" id="product" name="productname" value="<%=product_name%>" size="50" placeholder="Enter the email id" hidden="true"/>
                         <input type="number" class="form-control" id="quan" name="productquan" value="<%=productquantity%>" size="50" placeholder="Enter the email id" hidden="true"/>
                         <input type="number" class="form-control" id="productprice" name="price" value="<%=productprice%>" size="50" hidden="true"/>
@@ -134,10 +134,19 @@
                            <label for="contact no">Contact No</label>
                            <input type="text" id="contact" class="form-control" name="mobile" value="<%=no%>" placeholder="Enter your contact no..." required/>
                          </div>
-                           <div class="form-group">
+                          <div class="form-group">
                            <label for="email">Email</label>
                            <input type="email" id="email" class="form-control" name="email1" value="<%=email1%>" placeholder="Enter your email..." required/>
                            </div>
+                           <div class="form-group">
+                               <label for="PRODUCT"><b>Product Ordered</b></label>
+                           <input type="text" class="form-control" value="<%=product_name%>-<%=productquantity%> <%=unit%>" readonly/>
+                           </div>
+                           <div class="form-group">
+                               <label for="total"><b>Total Price To Pay</b></label>
+                           <input type="text" class="form-control" value="<%=productprice%>&#8377;" readonly/>
+                           </div>
+                           
                          <center>
                              <button type="submit" class="btn btn-warning" value="submit" id="insert">Order Now</button> 
                            &nbsp;&nbsp;&nbsp;&nbsp;<a href="user_product.jsp"><button type="button" class="btn btn-outline-success" value="continue shopping">Continue Shopping</button></a>
@@ -149,10 +158,14 @@
            </div>
           <h3 id="name1"></h3> 
         </div> 
+       <br><br>
         <footer>
            <%@include file="footer.jsp"%>     
        </footer>
-   <script type="text/javascript">
+     <script type="text/javascript">
+          for (var i = 0; i < localStorage.length; i++) {
+  console.log(localStorage.key(i));
+}
         //jquery myjquery function to save data in database  
     
         // function gotocheck(){

@@ -43,7 +43,7 @@
                        category=rs.getString(1);
                    %> 
                    
-                   <div class="col-lg-3 col-md-3 col-sm-12 col-10 d-block m-auto"><br>
+                   <div class="col-lg-4 col-md-3 col-sm-12 col-10 d-block m-auto"><br>
                      <div class="card">
                       <img class="card-img-top categori" src="getimage.jsp?category=<%=category%>"/>
                         <div class="card-body product_category">
@@ -82,8 +82,30 @@
               <center> <button type="submit" class="btn btn-primary" name="submit">Add New Category</button></center>
            </form>
          </div>
-          <footer>
+         <br><br>
+         <footer>
            <%@include file="footer.jsp"%>     
        </footer>
+           <%
+               try{
+               String msg=request.getParameter("message");
+               if(msg.equals("true"))
+               {%>
+               <script type="text/javascript">
+                   alert("Category deleted Successfully!!!");
+                 </script>
+              <% }
+                else
+                {%>
+                <script type="text/javascript">
+                    alert("Error Occured!");
+                  </script>
+                <%}
+                }
+                catch(Exception e)
+                {
+                     e.printStackTrace();
+                }
+            %>           
     </body>
 </html>

@@ -35,25 +35,25 @@ ResultSet resultSet = null;
         <%@include file="common/bootstrap_cdn.jsp"%>
     </head>
     <body>
-   <header>
-            <%@include file="common/nav_bar.jsp"%>
-       </header>     
-        <section class="category " style="background: peru;width:100%;height:80px;padding-top:20px">
-            <center><h2>ADMINS INFORMATION</h2></center>
-        </section><br><table align='center' border='2' width="100" style="background:thistle; width:100%" class="table">
-       
-        <tbody>
+    <header>
+         <%@include file="common/nav_bar.jsp"%>
+     </header>     
+     <section class="category " style="background: peru;width:100%;height:80px;padding-top:20px">
+        <center><h2>Admins Information</h2></center>
+     </section><br>
+ <table align='center' border='2' width="100" style="background:thistle; width:100%" class="table table-striped table-bordered table-hover">   
+ <tbody>
  <tr border='2'>
- <th width="25%">first name</th>
- <th width="25%">last name</th>
- <th width="25%">email</th>
- <th width="25%">mobile number</th>
+ <th width="25%">FirstName</th>
+ <th width="25%">LastName</th>
+ <th width="25%">Email</th>
+ <th width="25%">Mobile No</th>
  </tr>
 <%
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select Firstname,Lastname,Email,Mobile from login";
+String sql ="select Firstname,Lastname,Email,Mobile from login_data";
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
@@ -72,8 +72,10 @@ e.printStackTrace();
 %>
   </tbody>
 </table>
+  <br><br><br><br><br>
    <footer>
            <%@include file="footer.jsp"%>     
     </footer>
  </body>
 </html>
+

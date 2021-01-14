@@ -4,7 +4,7 @@
     Author     : Shree
 --%>
 
-  <%@page import="java.sql.*" %>
+  <%@page import="java.sql.*"%>
   <%
     String email=request.getParameter("emailid");
     String psd=request.getParameter("password");
@@ -24,12 +24,13 @@
        if(rs.next())
        {
           
-           response.sendRedirect("checkout.jsp?email="+email+"&password="+psd+"&product="+product_name+"&product_price="+product_price+"&product_quan="+product_quantity+"&unit="+unit+"&total_quan="+totalquan);
+           session.setAttribute("product","product_name");
+           response.sendRedirect("checkoutcart.jsp?email="+email+"&password="+psd+"&product="+product_name+"&product_price="+product_price+"&product_quan="+product_quantity+"&unit="+unit+"&total_quan="+totalquan+"");
        }
        else
        {
-           session.setAttribute("message","true");  
-           response.sendRedirect("loginuser_form.jsp");
+      
+           response.sendRedirect("loginuser_form.jsp?message=true");
        }
     }
     catch(Exception ex)

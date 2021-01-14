@@ -13,7 +13,7 @@
         <title>JSP Page</title>
         <%@include file="common/bootstrap_cdn.jsp"%>
     </head>
-    <body>
+    <body style="background-color:darkseagreen;">
         <header>
         <%@include file="common/nav_bar.jsp"%>
     </header>
@@ -52,7 +52,7 @@
           <br> 
           <div class="container">
            <div class="row">
-             <div class="col-lg-8 col-md-10 col-sm-10 col-10 d-block mx-auto">
+             <div class="col-lg-7 col-md-10 col-sm-10 col-10 d-block mx-auto">
                <div class="card">
                <div class="card-header bg-primary" style="color:white;">
                      <center>Edit Product Form</center>
@@ -75,7 +75,7 @@
                 <div class="form-group">
                     <label>Unit</label>
                     <div>
-                        <select name="unit" value="<%=unit%>" id="">
+                        <select name="unit" value="<%=unit%>" class="col-lg-12 col-12">
                          <option value="kg">kilogram</option>
                          <option value="g">gram</option>
                          <option value="l">litre</option>
@@ -104,8 +104,33 @@
        </div>
       </div>
     </div>
-   </div>                
-  </body>
+   </div>  
+    <br><br><br>
+       <footer>
+           <%@include file="footer.jsp"%>     
+       </footer> 
+        <%
+              try{ 
+               String msg=request.getParameter("message");
+               if(msg.equals("true"))
+               {%>
+               <script type="text/javascript">
+                   alert("Product Edited Successfully!!!");
+                   </script>
+              <% }
+                else
+                {%>
+                <script type="text/javascript">
+                    alert("Error Occured!");
+                    </script>
+                <%}
+             }
+             catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+         %>           
+      </body>
 </html>
  
     

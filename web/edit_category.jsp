@@ -13,9 +13,11 @@
         <title>JSP Page</title>
        <%@include file="common/bootstrap_cdn.jsp"%>
     </head>
+    <body style="background-color:darkseagreen;">
      <header>
         <%@include file="common/nav_bar.jsp"%>
     </header>
+    
     <br>  
         <%
            String category=request.getParameter("category");
@@ -73,6 +75,32 @@
        </div>
       </div>
     </div>
-   </div>                
+   </div> 
+    <br><br><br><br>
+    <footer>
+           <%@include file="footer.jsp"%>     
+       </footer>  
+        <%
+             try{
+               String msg=request.getParameter("message");
+               if(msg.equals("true"))
+               {%>
+               <script type="text/javascript">
+                   alert("Category Updated Successfully!!!");
+                   </script>
+              <% }
+                else
+                {%>
+                <script type="text/javascript">
+                    alert("Error occured!");
+                    </script>
+                <%}
+              }
+             catch(Exception e)
+              {
+                  e.printStackTrace();
+              }
+
+            %>           
   </body>
 </html>

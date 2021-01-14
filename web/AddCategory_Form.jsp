@@ -13,15 +13,14 @@
         <%@include file="common/bootstrap_cdn.jsp"%>
         <title>Online Grosory Shop</title>
     </head>
-    <body>
+    <body style="background-color:cadetblue;">
     <header>
         <%@include file="common/nav_bar.jsp"%>
     </header>
     <br>    
-   
     <div class="container">
      <div class="row">
-       <div class="col-lg-8 col-md-10 col-sm-10 col-10 d-block mx-auto">
+       <div class="col-lg-8 col-md-10 col-sm-10 col-10 d-block mx-auto mt-2">
        <div class="card">
        <div class="card-header bg-primary" style="color:white;">
              <center>Add New Category Form</center>
@@ -42,7 +41,7 @@
                     <input type="file" class="form-control" name="photo" size="50" required/>
                 </div>  
             <center><a href="add_category.jsp"><button type="button" class="btn btn-outline-success" value="Back">Back</button></a>&nbsp;&nbsp;&nbsp;&nbsp; 
-            <button type="submit" class="btn btn-success" onclick="showtoast('new category added successfully')" value="submit" name="category_add">Save</button></center>       
+            <button type="submit" class="btn btn-success" id="insert" value="submit" name="category_add">Save</button></center>       
            <!-- </table>-->
          </form>
         </div>
@@ -50,9 +49,29 @@
       </div>
      </div>
     </div>
+    <br><br><br>
        <footer>
            <%@include file="footer.jsp"%>     
       </footer>
+    <% try{
+          String msg=request.getParameter("message");
+          if(msg.equals("true"))
+          {%>
+            <script type="text/javascript"> 
+                alert("New Category added successfully!!!");
+            </script>
+         <%}   
+           else
+            {%>
+               <script type="text/javascript"> 
+                alert("Error occured!");
+              </script>
+           <% }
+        }
+       catch(Exception e)
+       {
+          e.printStackTrace();
+       }%>
    </body>
 </html>
 

@@ -29,7 +29,7 @@
         </ul>
         <!--SEARCH BAR INSIDE NAV-->
         <form class="form-inline col-lg-6" method="post" action="action_product2.jsp">
-            <input class="form-control" name="search_product" id="search1" type="search" placeholder="Search for category..." aria-label="Search" style="width:60%">
+            <input class="form-control" name="search_product" id="search1" type="search" placeholder="Search for product..." aria-label="Search" style="width:60%">
             <button class="btn btn-outline-success" type="submit" id="search_product">
               <i class="fa fa-search" aria-hidden="true"></i>
             </button> 
@@ -40,7 +40,7 @@
              <a class="nav-link" href="#!" data-toggle="modal" data-target="#cart"><i class="fa fa-cart-plus" style="font-size:25px;color:white;"></i><span class="ml-2 cart-items" style="font-size:19px;color:white;">( 0 )</span></a>
           </li>
          <li class="navbar-nav mr-auto mt-2 mt-sm-0">&nbsp;
-              <form class="form-inline" action="customer_Registration.jsp">
+              <form class="form-inline" action="customer_register.jsp">
              <button type="submit" class="btn btn-warning">REGISTER HERE
              <i class="fa fa-hand-o-left"></i>
              </button>
@@ -65,7 +65,7 @@
         <div class="col-lg-3 col-md-2 col-sm-3 col-10 d-block">
         <div class="list-group mt-2">
             <a href="#" class="list-group-item list-group-item-action active"><i class="fa fa-bars" style="font-size:22px">Categories</i></a>
-            <a href="user_product.jsp?cate=all" class="list-group-item list-group-item-action">
+            <a href="user_product.jsp?cate=All Products" class="list-group-item list-group-item-action">
                 All Products
             </a> 
            <%
@@ -99,9 +99,9 @@
               <!--show products depend on category-->
              <br>
              <div class="col-lg-9 col-md-8 col-sm-12 col-10 d-block mt-3"> 
-              <%if(category1==null || category1.equals("all"))
+              <%if(category1==null || category1.equals("All Products"))
                   {%>
-                   <h2 style="color:brown;margin-left:15rem;font-family:Times new roman"><%out.println("all");%></h2>
+                   <h2 style="color:brown;margin-left:15rem;font-family:Times new roman"><%out.println("All Products");%></h2>
                   <%}
                  else
                   {%>
@@ -122,7 +122,7 @@
                     Class.forName("com.mysql.jdbc.Driver");
                     con=DriverManager.getConnection("jdbc:mysql://localhost:3306/grocerydatabase?zeroDateTimeBehavior=convertToNull","root","");
                     Statement p=con.createStatement();
-                    if(category1==null || category1.equals("all"))
+                    if(category1==null || category1.equals("All Products"))
                    {
                          rs=p.executeQuery("select * from product");
                    }
@@ -140,10 +140,11 @@
                        unit=rs.getString(4);
                        desc=rs.getString(6);
                    %>
+                   
                    <div class="card cate">
-                      <img class="card-img-top categori" src="getimage_product.jsp?product=<%=product%>"/>
+                       <a href="view_product.jsp?category=<%=category%>&product=<%=product%>&price=<%=price%>&quantity=<%=quantity%>&unit=<%=unit%>&description=<%=desc%>"><img class="card-img-top categori" src="getimage_product.jsp?product=<%=product%>"/></a>
                        <div class="card-body">
-                       <h5 class="card-title" style="color:#666600"><%=product%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8377;<%=price%>/-</h5>
+                       <h5 class="card-title" style="color:#666600"><%=product%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8377;<%=price%>/<%=unit%></h5>
                        <button class="btn btn-danger" onclick="addtocart('<%=product%>',<%=price%>,<%=quantity%>,'<%=unit%>')"><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size:20px">Add to Cart</i></button>
                        &nbsp;<a href="buyproduct.jsp?category=<%=category%>&product=<%=product%>&price=<%=price%>&quantity=<%=quantity%>&unit=<%=unit%>&description=<%=desc%>"><button class="btn btn-warning" name="buy">Buy Now</button></a>
                       </div>
@@ -152,7 +153,7 @@
                   }
               
                 rs.close();
-                 pt.close();
+                pt.close();
                  con.close(); 
               }
               catch(Exception e)
@@ -171,29 +172,29 @@
            <%@include file="footer.jsp"%>     
        </footer>
         <script type="text/javascript">
-         $(document).ready(function(){
-           $("#search1").keyup(function(){
-            var searchText=$(this).val();
-            if(searchText!=''){
-                $.ajax({
-                    url:'action_product.jsp',
-                    method:'post',
-                    data:{query:searchText},
-                    success:function(response){
-                      $("#showlist").html(response);  
-                    }
-                });
-            }
-            else
-            {
-                $("#showlist").html('');
-            }
-           });
-           $(document).on('click','a',function(){
-               $("#search1").val($(this).text());
-               $("#showlist").html('');
-           });       
-         });
+       //  $(document).ready(function(){
+         //  $("#search1").keyup(function(){
+           // var searchText=$(this).val();
+          //  if(searchText!=''){
+            //    $.ajax({
+              //      url:'action_product.jsp',
+                //    method:'post',
+                 //   data:{query:searchText},
+                  //  success:function(response){
+                    //  $("#showlist").html(response);  
+                  //  }
+               // });
+           // }
+           // else
+           // {
+             //   $("#showlist").html('');
+           // }
+          // });
+          // $(document).on('click','a',function(){
+            //   $("#search1").val($(this).text());
+             //  $("#showlist").html('');
+           //});       
+         //});
        /*   $(document).ready(function(){
            $("#search_product").click(function(){
             var searchval=$("#search1").val();

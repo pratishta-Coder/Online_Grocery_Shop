@@ -12,8 +12,30 @@
         <title>JSP Page</title>
         <%@include file="common/bootstrap_cdn.jsp"%>
     </head>
-    <body>
-       <section class="category" style="background:lightgray;width:100%;height:80px;padding-top:20px">
+    <script type="text/javascript">
+      function data_validate()
+      {
+       
+        var password = document.forms["RegForm"]["password"]; 
+        var conpass = document.forms["RegForm"]["confirm_pass"]; 
+  
+         if(password.value.length < 8 || password.value.length>15) {  
+            document.getElementById("pswd").innerHTML = "**Password length must be atleast 8 characters to 15 characters and it should contain 1 digit and special symbol";  
+             return false;  
+        } 
+       
+        if(password.value!=conpass.value)
+        {
+           document.getElementById("con_pswd").innerHTML="**Should same to password ";
+           return false;    
+        }    
+    } 
+  </script>
+    <body style="background-color:skyblue;">
+      <header>
+        <%@include file="common/nav_bar.jsp"%>
+    </header>
+       <section class="category" style="background:darksalmon;width:100%;height:80px;padding-top:20px">
            <center><h3>Forgot Password</h3></center>
         </section><br>
          <!--start of container-->
@@ -25,7 +47,7 @@
             <div class="card-header bg-info" style="color:white"><center>FOR NEW PASSWORD</center></div>
             <div class="card-body">
              <!--form inside card to add new admin-->
-             <form class="inner-group " method="POST" action="ForgotConnectivity.jsp">
+             <form class="inner-group " method="POST" action="ForgotConnectivity.jsp" name="RegForm" onsubmit="return data_validate()">
                 <div class="form-group">
                     <label for=firstN">Username</label>
                     <input type="text"  class="form-control" name="username" placeholder="Enter the username..."required/>
@@ -34,11 +56,12 @@
                 <div class="form-group">
                     <label for="Password">Password</label>
                     <input type="password" class="form-control" name="password" placeholder="Enter the password of 8 to 12 character..." required/>
-                    
+                    <span id="pswd" class="text-danger font-weight-bold"></span>
                 </div>
                 <div class="form-group">
                     <label for="Confirm password">Confirm Password</label>
                     <input type="password" class="form-control" name="confirm_pass" placeholder="Re-enter the password..." required/>
+                    <span id="con_pswd" class="text-danger font-weight-bold"></span>
                 </div>  
                 <center><button type="submit" class="btn btn-success" value="submit">Submit</button></center>
              </form>
@@ -49,10 +72,25 @@
          <!--ending of card-->
         </div>
       </div>
+         <br><br>
      <footer>
            <%@include file="footer.jsp"%>     
        </footer>
-</section>
-<!--Section: Block Content-->
+   <!--Section: Block Content-->
+      <% 
+          try{
+          String msg=request.getParameter("message");
+          if(msg.equals("false"))
+          {%>
+            <script type="text/javascript"> 
+               alert("Username not found!");
+            </script>
+         <%}   
+        }
+       catch(Exception e)
+       {
+          e.printStackTrace();
+       }
+     %>
     </body>
 </html>

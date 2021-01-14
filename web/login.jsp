@@ -40,5 +40,26 @@
                 <div class="col-md-4 col-sm-4 col-xs-12"></div>      
             </div>     
         </div>
+         <% 
+          try{
+          String msg=request.getParameter("message");
+          if(msg.equals("true"))
+          {%>
+            <script type="text/javascript"> 
+                alert("Password Updated Successfully!!!");
+            </script>
+         <%}   
+           else
+            {%>
+               <script type="text/javascript"> 
+                alert("Error occured!Username or Password mismatched!");
+              </script>
+           <% }
+        }
+       catch(Exception e)
+       {
+          e.printStackTrace();
+       }
+     %>
     </body>
 </html>

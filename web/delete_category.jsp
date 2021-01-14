@@ -37,7 +37,7 @@
                    int j=st.executeUpdate("delete from category where Category_Name='"+category+"'");
                     if(j>0)
                     {
-                          response.sendRedirect("add_category.jsp");
+                          response.sendRedirect("add_category.jsp?message=true");
                     }
                     else
                     {

@@ -15,26 +15,24 @@
     </head>
     <body>
         <header> 
-             <%@include file="common/nav_bar.jsp"%>
+           <%@include file="common/nav_bar.jsp"%>
         </header>
-        <br>
-        <section class="category">
+        <section class="category" style="background: peru;width:100%;height:80px;padding-top:20px">
             <center><h3>Sell History</h3></center>
         </section>
         <br>
         <!--table to display sell history-->
-        <table class="table table-striped table-bordered table-hover">
+        <table align='center' border='2' width="100" style="background:thistle; width:100%" class="table table-striped table-bordered table-hover">   
           <thead> 
-            <tr class="table-success">
-              <th scope="col"><b>FirstName</b></th>
-               <th scope="col"><b>LastName</b></th>
-               <th scope="col"><b>Address</b></th>
-               <th scope="col"><b>Email</b></th>
-               <th scope="col"><b>Contact</b></th>
-               <th scope="col"><b>Product Name</b></th>
-               <th scope="col"><b>Product Quantity</b></th>
-                <th scope="col"><b>Product Unit</b></th>
-                <th scope="col"><b>Price</b></th>
+              <tr  border='2'>
+               <th width="20%"><b>Customer Name</b></th>
+               <th width="25%"><b>Address</b></th>
+               <th width="20%"><b>Email</b></th>
+               <th width="20%"><b>Contact</b></th>
+               <th width="25%"><b>Product Name</b></th>
+               <th width="25%"><b>Quantity Ordered</b></th>
+               <th width="25%"><b>Price</b></th>
+               <th width="25%"><b>Date</b></th>
             </tr>
           </thead>
           <tbody>
@@ -47,23 +45,21 @@
                    con=DriverManager.getConnection("jdbc:mysql://localhost:3306/grocerydatabase?zeroDateTimeBehavior=convertToNull","root","");
                    pt=con.createStatement();
                  
-                   rs=pt.executeQuery("select * from register");
+                   rs=pt.executeQuery("select * from sell_history");
                    while(rs.next())
                    {%>
-                    <tr class="table-danger">
-                   <td><%=rs.getString(2)%></td>
-                   <td><%=rs.getString(3)%></td>
-                   <td><%=rs.getString(4)%></td>   
+                    <tr class="text-white bg-secondary" style="border:'1'">
+                   <td><%=rs.getString(1)%> <%=rs.getString(2)%></td>
+                   <td><%=rs.getString(3)%></td>   
+                   <td><%=rs.getString(4)%></td>
                    <td><%=rs.getString(5)%></td>
                    <td><%=rs.getString(6)%></td>
-                   <td><%=rs.getString(7)%></td>
-                    <td><%=rs.getInt(8)%></td>
-                    <td><%=rs.getString(9)%></td>
-                    <td><%=rs.getInt(10)%></td>
+                    <td><%=rs.getInt(7)%> <%=rs.getString(8)%></td>
+                    <td><%=rs.getInt(9)%>&#8377;</td>
+                    <td><%=rs.getDate(10)%></td>
                        </tr>
                
                   <% }
-                  rs.close();
                   pt.close();
                   con.close(); 
                   }
@@ -72,8 +68,12 @@
                    //e.printStackTrace();
                 }
                    %>
-          </tbody>
-            
+          </tbody>     
         </table>
+          <br><br><br><br><br><br><br><br> 
+       <footer>
+           <%@include file="footer.jsp"%>     
+      </footer>
+     
     </body>
 </html>

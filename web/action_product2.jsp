@@ -47,7 +47,7 @@
      </header>
      <br> 
     
-       <div class="container mt-3">  
+       <div class="container mt-4">  
        <div class="row">
        <br>
        <%
@@ -73,8 +73,8 @@
                            product1=re.getString("Product_Name");
                            price=re.getInt("Price");
                            quantity=re.getInt("Quantity");
-                            unit=re.getString("Unit");
-                          desc=re.getString("Description");
+                           unit=re.getString("Unit");
+                           desc=re.getString("Description");
                    %>  
                
          <div class="col-lg-5 col-md-5 col-sm-8 col-10 d-block m-auto">  
@@ -92,8 +92,9 @@
                           
                else
                   {%>
-                      <p class='list-group-item border-1'>No Product Found</p>
-                      <h1><%=product%></h1>
+                  <center><h1>No Product Found</h1></center>
+                  <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                   
                   <%}
                 con.close();
              }
@@ -105,7 +106,7 @@
      
        </div>   
      </div>
-     <br><br>
+     <br><br><br> <br><br>
       <footer>
            <%@include file="footer.jsp"%>     
        </footer>

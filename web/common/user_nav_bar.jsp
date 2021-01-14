@@ -36,7 +36,7 @@
               </form>
           </li>
           <li class="navbar-nav mt-2 mt-sm-0">&nbsp;
-              <form class="form-inline" action="customer_Registration.jsp">
+              <form class="form-inline" action="customer_register.jsp">
              <button type="submit" class="btn btn-warning">REGISTER HERE
              <i class="fa fa-hand-o-left"></i>
              </button>

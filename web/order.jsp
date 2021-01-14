@@ -5,14 +5,41 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+
+  String product_name=request.getParameter("productname");
+    String product_price=request.getParameter("price");
+    String product_quantity=request.getParameter("productquan");
+    String unit=request.getParameter("unit");
+    String quan=request.getParameter("total_quan");
+    String firstname=request.getParameter("firstn");
+    String lastname=request.getParameter("lastn");
+    String address=request.getParameter("address");
+    String contact=request.getParameter("mobile");
+    String email=request.getParameter("email1");
+    int productprice=0;
+    int productquantity=0;
+    int totalquan=0;
+    try{
+         productprice=Integer.parseInt(product_price);
+         productquantity=Integer.parseInt(product_quantity);
+         totalquan=Integer.parseInt(quan);
+    }
+    catch(Exception e)
+    {
+        e.printStackTrace();
+    }
+
+%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="style2.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
          <%@include file="common/bootstrap_cdn.jsp"%>
     </head>
-    <body bgcolor="black">
+    
+    <body style="background-color: black;">
     <header>
         <%@include file="common_cart.jsp"%>    
         <nav class="navbar navbar-expand-lg navbar-light bg-dark">
@@ -40,6 +67,7 @@
        </div>
       </nav>
      </header> 
+      
       <div class="padding">
             <div class="row">
                <div class="container d-flex justify-content-center"> 
@@ -48,7 +76,7 @@
                            <div class="card-header">
                                <div class="row">
                                 <div class="col-md-6">
-                                     <span>CREDIT/DEBIT CARD PAYMENT</span>
+                                    <b><span>CREDIT/DEBIT CARD PAYMENT</span></b>
                                 </div> 
                                 <div class="col-md-6 text-right" style="margin-top:-5px">
                                     <img src="https://img.icons8.com/color/36/000000/visa.png">      
@@ -56,10 +84,22 @@
                                     <img src="https://img.icons8.com/color/36/000000/amex.png"> 
                                 </div>
                            </div>
+                       
                          </div> 
-                           
-                           <div class="card-body" style="height:350px">
-                               <form method="post" action="index.jsp">
+                   
+                    <div class="card-body" style="height:350px">
+                         <form method="post" action="save_product">
+                         <input type="text" class="form-control" id="product" name="productname" value="<%=product_name%>" size="50" placeholder="Enter the email id" hidden="true"/>
+                        <input type="number" class="form-control" id="quan" name="productquan" value="<%=productquantity%>" size="50" placeholder="Enter the email id" hidden="true"/>
+                        <input type="number" class="form-control" id="productprice" name="price" value="<%=productprice%>" size="50" hidden="true"/>
+                        <input type="text" class="form-control" id="pro_unit" name="unit" value="<%=unit%>" size="50" hidden="true"/>
+                        <input type="number" class="form-control" id="quan" name="total_quan" value="<%=totalquan%>" size="50" placeholder="Enter the email id" hidden="true"/>
+                        <input type="text" id="firstname" class="form-control" name="firstn" value="<%=firstname%>" placeholder="Enter your firstname..." hidden="true"/>
+                        <input type="text" id="lastname" class="form-control" name="lastn" value="<%=lastname%>" placeholder="Enter your lastname..." hidden="true"/>
+                        <input type="textarea" id="address" class="form-control" name="address" value="<%=address%>" placeholder="Enter your shipping address..." hidden="true"/>
+                        <input type="text" id="contact" class="form-control" name="mobile" value="<%=contact%>" placeholder="Enter your contact no..."hidden="true"/>
+                        <input type="email" id="email" class="form-control" name="email1" value="<%=email%>" placeholder="Enter your email..." hidden="true"/>
+                          
                                <div class="form-group">
                                    <label for="cc-number" class="control-label">CARD NUMBER</label>
                                    <input type="tel" id="cc-number" class="input-lg form-control cc-number" autocomplete="cc-number" placeholder=".... .... .... ...." name="">
@@ -74,7 +114,7 @@
                               
                                    <div class="col-md-6">
                                     <div class="form-group">
-                                   <label for="cc-cvc" class="control-label">CARD CVC</label>
+                                   <label for="cc-cvc" class="control-label">CARD CVV</label>
                                    <input type="tel" id="cc-cvc" class="input-lg form-control cc-cvc" autocomplete="off" placeholder="...." name="">
                                    </div>   
                                   </div>   
@@ -85,7 +125,7 @@
                                    <input type="text" class="input-lg form-control">
                                </div>
                                  <div class="form-group">
-                                     <button type="submit" value="MAKE PAYMENT" class="btn btn-success btn-lg form-control" onclick="#">MAKE PAYMENT</button>
+                                     <button type="submit" value="MAKE PAYMENT" id="pay" class="btn btn-success btn-lg form-control">MAKE PAYMENT</button>
                                </div>
                                </form>
                                </div>
@@ -94,22 +134,40 @@
                   </div>
              </div>
         </div>
-        
-        <script type="text/javascript">
-          $(function($){
-             $('.cc-number').payment('formatCardNumber');
-             $('.cc-exp').payment('formatCardExpiry');
-             $('.cc-cvc').payment('formatCardCVC');
-             $('form').submit(function(e){
-                e.preventDefault();
-                var cardType=$.payment.cardType($('.cc-number').val());
-                $ ('.cc-number').toggleInputError(!$payment.validateCardNumber($(.cc-number).val()));      
-                $ ('.cc-exp').toggleInputError(!$payment.validateCardExpiry($(.cc-exp).payment('cardExpiryVal')));  
-                $ ('.cc-cvc').toggleInputError(!$payment.validateCardCVC($('.cc-cvc').val(),cardType));
-                $('.validation').removeClass('text-danger text-success');    
-                $('.validation').addClass($('.has-error').length?'text-danger':'text-success'); 
-    });
-   });
-        </script>
-    </body>
+        <%
+            try{
+               String msg=request.getParameter("false");
+               if(msg.equals("false"))
+               {%>
+                   <script type="text/javascript">
+                         
+                   alert("Error occured!!!");
+                   </script>
+              <%}
+             }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+           %> 
+       </body>
 </html>
+
+       <!--
+            
+         // $(function pay($){
+           //  $('.cc-number').payment('formatCardNumber');
+             //$('.cc-exp').payment('formatCardExpiry');
+            // $('.cc-cvc').payment('formatCardCVC');
+            // $('form').submit(function(e){
+              //  e.preventDefault();
+              //  var cardType=$.payment.cardType($('.cc-number').val());
+               // $ ('.cc-number').toggleInputError(!$payment.validateCardNumber($(.cc-number).val()));      
+              //  $ ('.cc-exp').toggleInputError(!$payment.validateCardExpiry($(.cc-exp).payment('cardExpiryVal')));  
+              //  $ ('.cc-cvc').toggleInputError(!$payment.validateCardCVC($('.cc-cvc').val(),cardType));
+              //  $('.validation').removeClass('text-danger text-success');    
+                //$('.validation').addClass($('.has-error').length?'text-danger':'text-success'); 
+    //});
+   //});-->
+        
+    

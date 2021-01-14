@@ -12,33 +12,34 @@
         <title>JSP Page</title>
     </head>
     <body>
-         <%
-       String id=request.getParameter("login_id");
-       String pass=request.getParameter("password1");
+     <%
+      String id=request.getParameter("login_id");
+      String pass=request.getParameter("password1");
       String fname=request.getParameter("firstname");
       String lname=request.getParameter("lastname");
       String email=request.getParameter("Email");
       String mob=request.getParameter("mobile_no");
-      
+      String message="";
        Connection con=null;
         Statement st=null;
        try{
-            
+          
           Class.forName("com.mysql.jdbc.Driver");
           con=DriverManager.getConnection("jdbc:mysql://localhost:3306/grocerydatabase?zeroDateTimeBehavior=convertToNull","root","");
           st=con.createStatement();
-          int rs=st.executeUpdate("INSERT INTO login(username,password,Firstname,Lastname,Mobile)VALUES('"+id+"','"+pass+"','"+fname+"','"+lname+"','"+email+"','"+mob+"')");
+          int rs=st.executeUpdate("INSERT INTO login_data(Firstname,Lastname,Email,Mobile,username,password)VALUES('"+fname+"','"+lname+"','"+email+"','"+mob+"','"+id+"','"+pass+"')");
+           
       //   int rs1=st1.executeUpdate("INSERT INTO adminprofile(firstname,lastname,email,mobilenumber)VALUES('"+fname+"','"+lname+"','"+email+"','"+mob+"')");
          if(rs!=0)
          {
             // out.println("alert('New Admin added successfully..')");
-             request.setAttribute("message","true");
-             response.sendRedirect("Add_Addmin.jsp");
+           //  session.setAttribute("message","true");
+             response.sendRedirect("Add_Addmin.jsp?message=true");
              
          }
          else
          {
-             response.sendRedirect(".jsp");
+              response.sendRedirect("Add_Addmin.jsp");
          }
           con.close();
          

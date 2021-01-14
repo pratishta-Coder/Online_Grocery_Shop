@@ -7,24 +7,20 @@
         <a class="navbar-brand text-warning font-weight-bold" href="#">Online Grocery Store</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link text-white " href="index.jsp">HOME <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white " href="index.jsp">HOME&nbsp;<span class="sr-only">(current)</span></a>
             </li>
              <li class="nav-item active">
-                <a class="nav-link text-white " href="Add_Addmin.jsp">Add Admin<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white " href="Dashboard.jsp">DASHBOARD&nbsp;<span class="sr-only">(current)</span></a>
             </li>
              <li class="nav-item active">
-                <a class="nav-link text-white " href="add_category.jsp">Category<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white " href="Add_Addmin.jsp">ADD ADMIN&nbsp;<span class="sr-only">(current)</span></a>
+            </li>
+             <li class="nav-item active">
+                <a class="nav-link text-white " href="add_category.jsp">CATEGORY&nbsp;<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="AddProduct.jsp">Product</a>
+                <a class="nav-link text-white" href="AddProduct.jsp">PRODUCT</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="sell_history.jsp">Sell-History</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="adminprofile.jsp">Admins Info</a>
-            </li>
-          
         </ul>
     <!--SEARCH SECTION-->
     
@@ -35,15 +31,7 @@
             </button>
         </form>-->
         <!--LOGIN AND REGISTER SECTION-->
-        <div class="navbar-nav navbar-right">
-         <li>
-              <form class="form-inline" action="#">
-                <!--button type="submit">Click me</button-->
-            &nbsp;<button type="submit" class="btn btn-primary">
-                 <i class="fa fa-sign-in"></i>&nbsp;My Profile&nbsp;
-                    </button>
-              </form>
-         </li>
+       
          <form class="form-inline" action="index.jsp">
          <li class="navbar-nav mr-auto mt-2 mt-sm-0">&nbsp;
              <button type="submit" class="btn btn-warning">Logout

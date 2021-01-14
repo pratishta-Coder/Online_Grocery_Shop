@@ -38,7 +38,7 @@ function addtocart(product_name,product_price,quantity,unit)
             showtoast(product.productname +"product is added to cart");
         }
         else
-        {
+         {
             showtoast("Can't increase the quantity,that much quantity is not avaliable in stock");
         }
     }
@@ -85,9 +85,9 @@ function updateCart()
               <td>'${item.productname}'</td>
               <td>&#8377;${item.productprice}</td>
               <td>${item.product_quantity}</td>
-                 <td>'${item.product_unit}'</td>
+              <td>'${item.product_unit}'</td>
               <td>&#8377;${item.product_quantity * item.productprice}</td>
-               <td><button onclick="viewfromcart('${item.productname}')" class="btn btn-success btn-sm">View</button></td>
+              <td><button onclick="viewfromcart('${item.productname}',${item.product_quantity})" class="btn btn-success btn-sm">View</button></td>
               <td><button onclick="deletefromcart('${item.productname}')" class="btn btn-danger btn-sm">Remove</button></td>
              </tr>
             `;
@@ -101,12 +101,11 @@ function updateCart()
         $(".checkout-btn").removeClass("disabled"); //adding dynamic attribute disabled on button
        }
   }
-  function viewfromcart(product_name)
+  function viewfromcart(product_name,quantity)
   {
-     // console.log(product_name);
-     window.location="buyproduct.jsp?productname:"+product_name;
+     window.location="buyproduct_data.jsp?productname="+product_name+"&productquan="+quantity;
   }
-  
+
   //delete item from cart
  function deletefromcart(product_name){
     console.log(product_name);

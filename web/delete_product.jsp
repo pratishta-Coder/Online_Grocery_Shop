@@ -24,7 +24,7 @@
             int i=st.executeUpdate("delete from product where Product_Name='"+product+"'");
             if(i>0)
             {
-                response.sendRedirect("AddProduct.jsp");
+                response.sendRedirect("AddProduct.jsp?message=true");
             }
             else
             {

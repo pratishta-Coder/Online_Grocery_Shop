@@ -42,7 +42,7 @@
               </form>
           </li>
           <li class="navbar-nav mt-2 mt-sm-0">&nbsp;
-              <form class="form-inline" action="customer_Registration.jsp">
+              <form class="form-inline" action="customer_register.jsp">
              <button type="submit" class="btn btn-warning">REGISTER HERE
              <i class="fa fa-hand-o-left"></i>
              </button>
@@ -75,7 +75,7 @@
                      category1=re.getString("Category_Name");
                  %>
                 
-                 <div class="col-lg-4 col-md-3 col-sm-10 col-12 d-block m-auto"><br>
+                 <div class="col-lg-5 col-md-4 col-sm-10 col-12 d-block m-auto"><br>
                   <a href="user_product.jsp?cate=<%=category1%>">
                    <div class="card">
                     <img class="card-img-top categori" src="getimage.jsp?category=<%=category1%>"/>
@@ -90,6 +90,7 @@
                    else
                   {%>
                         <h1>Category not found</h1>
+                        <br><br><br><br><br><br><br><br><br><br><br><br><br>
                  <% }
 
             }
@@ -100,7 +101,7 @@
            %>
          </div>
         </div>
-        <br><br>
+         <br><br><br><br><br>
           <footer><%@include file="footer.jsp"%></footer>
     </body>
 </html>

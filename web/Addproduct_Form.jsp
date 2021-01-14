@@ -10,22 +10,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <%@include file="common/bootstrap_cdn.jsp"%> 
+        <%@include file="common/bootstrap_cdn.jsp"%> 
     </head>
-    <body>
+    <body style="background-color:darkseagreen;">
     <header>
         <%@include file="common/nav_bar.jsp"%>
     </header>
      <br><br>
-     <div id="message"><center>New product added successfully!!!</center></div>
      <div class="container">
      <div class="row">
      <div class="col-lg-7 col-md-10 col-sm-10 col-10 d-block mx-auto">
-     <div class="card">
-     <div class="card-header bg-primary" style="color:white;">
+     <div class="card border-2">
+     <div class="card-header bg-info" style="color:white;">
             <center>Add New Product Form</center>
-       </div>
-       <div class="card-body">
+     </div>
+     <div class="card-body">
          <form class ="inner-group"  method="post" action="AddProductServlet" enctype="multipart/form-data">
             <!--<table border="0">-->
             <div class="form-group">
@@ -64,13 +63,13 @@
                 <div class="form-group">
                     <label>Unit</label>
                     <select name="unit" class="col-lg-12 col-12">
-                         <option value="kilogramg">kilogram</option>
-                         <option value="gram">gram</option>
-                         <option value="litre">litre</option>
-                         <option vale="mililitre">mililitre</option>
+                         <option value="kg">kg</option>
+                         <option value="gm">gm</option>
+                         <option value="liter">liter</option>
+                         <option vale="ml">ml</option>
                          <option value="pc">pc</option>
                          <option value="pcs">pcs</option>
-                         <option value="pcs">bottles</option>
+                         <option value="bottels">bottles</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -89,7 +88,7 @@
                <center>
                <a href="AddProduct.jsp" class="btn btn-outline-success">Back</a>&nbsp;&nbsp;&nbsp;&nbsp;
                <button type="submit" class="btn btn-success" value="submit" name="product_add">Save</button>
-               </center>  
+             </center>  
            <!--</table>-->
          </form>
         </div> 
@@ -97,10 +96,31 @@
        </div>
       </div>
      </div>
+     <br><br>
      <footer>
            <%@include file="footer.jsp"%>     
       </footer>
+     <% 
+      try{
+          String msg=request.getParameter("message");
+          if(msg.equals("true"))
+          {%>
+            <script type="text/javascript"> 
+                alert("New product added successfully!!!");
+            </script>
+         <%}   
+           else
+            {%>
+               <script type="text/javascript"> 
+                alert("Error occured!");
+              </script>
+           <% }
+        }
+       catch(Exception e)
+       {
+          e.printStackTrace();
+       }%>
+        
      <!--code to display message on page after adding new product -->     
    </body>
-   <a href="Addproduct_Form.jsp"></a>
 </html>

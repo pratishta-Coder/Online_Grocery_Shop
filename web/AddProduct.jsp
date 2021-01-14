@@ -20,7 +20,7 @@
       </header>
       <br> 
         <section class="category">
-            <center><h3>Products</h3></center>
+           <center><h3>Products</h3></center>
         </section>
         <br>
         <div class="container-fluid">
@@ -29,11 +29,10 @@
         <div class="col-lg-3 col-md-2 col-sm-3 col-10 d-block">
         <div class="list-group mt-2">
             <a href="#" class="list-group-item list-group-item-action active"><i class="fa fa-bars" style="font-size:22px">Categories</i></a>
-            <a href="AddProduct.jsp?cate=all" class="list-group-item list-group-item-action">
+            <a href="AddProduct.jsp?cate=All Products" class="list-group-item list-group-item-action">
              All Products
             </a> 
-         <%
-             
+         <%   
              Connection con=null;
              Statement pt=null;
              ResultSet rs=null;
@@ -62,15 +61,15 @@
               </div>
              </div>
               <!--show products depend on category-->
-             <br>
+          
              <div class="col-lg-9 col-md-8 col-sm-12 col-10 d-block"> 
               <%if(request.getParameter("cate")==null)
                   {%>
-                  <h2 style="color:brown;margin-left:15rem;margin-top:5px;"><%out.println("all");%></h2>
+                  <h2 style="color:brown;margin-left:15rem;margin-top:4px;"><%out.println("All Products");%></h2>
                   <%}
                   else
                   {%>
-                  <h2 style="color:brown;margin-left:15rem;margin-top:5px;"><%=request.getParameter("cate")%></h2>
+                  <h2 style="color:brown;margin-left:15rem;margin-top:4px;"><%=request.getParameter("cate")%></h2>
              <%}%>
               <div class="row mt-3">
               <div class="col-lg-12 col-md-10 col-lg-12 col-sm-8 col-10 d-block m-auto"> 
@@ -79,12 +78,13 @@
                 <% 
                    String category1=request.getParameter("cate");
                    String product="";
+                   String unit="";
                    int price; 
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
                     con=DriverManager.getConnection("jdbc:mysql://localhost:3306/grocerydatabase?zeroDateTimeBehavior=convertToNull","root","");
                     Statement p=con.createStatement();
-                    if(category1==null || category1.equals("all"))
+                    if(category1==null || category1.equals("All Products"))
                    {
                          rs=p.executeQuery("select * from product");
                    }
@@ -95,14 +95,15 @@
                    while(rs.next())
                    {
                        product=rs.getString(2);  
-                       price=rs.getInt(5);     
+                       price=rs.getInt(5); 
+                       unit=rs.getString(4);
                    %>
                     <div class="card cate">
                       <img class="card-img-top categori" src="getimage_product.jsp?product=<%=product%>"/>
                        <div class="card-body">
-                           <h5 class="card-title" style="color:purple"><%=product%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8377;<%=price%></h5>
-                           &nbsp;<a href="edit_product.jsp?product=<%=product%>" class="btn btn-success" name="edit"><i class="fa fa-edit" style="font-size:22px">edit</i></a>
-                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="delete_product.jsp?product=<%=product%>" class="btn btn-danger" name="delete"><i class="fa fa-trash-o" style="font-size:22px">delete</i></a>
+                         <h5 class="card-title" style="color:purple"><%=product%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8377;<%=price%>/<%=unit%></h5>
+                         &nbsp;<a href="edit_product.jsp?product=<%=product%>" class="btn btn-success" name="edit"><i class="fa fa-edit" style="font-size:22px">edit</i></a>
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="delete_product.jsp?product=<%=product%>" class="btn btn-danger" name="delete"><i class="fa fa-trash-o" style="font-size:22px">delete</i></a>
                        </div>
                     </div>
                     <%
@@ -122,14 +123,37 @@
         </div>
         </div>
         </div>   
+        <br>
         <div class="container">
           <form class="inner-group" action="Addproduct_Form.jsp">
               <center> <button type="submit" class="btn btn-primary" name="submit">Add New Product</button></center>
           </form>
         </div>
-          <footer>
+       <br><br>
+        <footer>
            <%@include file="footer.jsp"%>     
        </footer>
+        <%
+            try{
+               String msg=request.getParameter("message");
+               if(msg.equals("true"))
+               {%>
+               <script type="text/javascript">
+                   alert("Product deleted Successfully!!!");
+                   </script>
+              <% }
+                else
+                {%>
+                <script type="text/javascript">
+                    alert("Error Occured!");
+                    </script>
+                <%}
+              }
+             catch(Exception e)
+             {
+                 e.printStackTrace();
+             }
+            %>  
     </body>
 </html>
         

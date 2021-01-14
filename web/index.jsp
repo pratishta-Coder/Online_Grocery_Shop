@@ -17,10 +17,10 @@
     <header>
      <!--including NAV BAR-->
       <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        <a class="navbar-brand text-warning font-weight-bold" href="#">Online Grocery Store</a>
+       <a class="navbar-brand text-warning font-weight-bold" href="#">Online Grocery Store</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link text-white " href="index.jsp">HOME <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white " href="index.jsp">HOME<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="user_product.jsp">PRODUCT</a>
@@ -47,7 +47,7 @@
               </form>
           </li>
           <li class="navbar-nav mt-2 mt-sm-0">&nbsp;
-              <form class="form-inline" action="customer_Registration.jsp">
+              <form class="form-inline" action="customer_register.jsp">
              <button type="submit" class="btn btn-warning">REGISTER HERE
              <i class="fa fa-hand-o-left"></i>
              </button>
@@ -118,12 +118,7 @@
          <br>
         <!--categories section-->
          <div><center><h3 class="cate_name" style="color:palevioletred;font-family:Arial;font-weight:bold"><u>Categories</u></h3></center></div>
-         
-         <div class="container">  
-          <div class="row" id="result">   
-          </div>
-         </div>
-         
+       
          <div class="container">
          <div class="row">
          <%
@@ -141,16 +136,16 @@
                      category=re.getString("Category_Name");
                  %>
                 
-                 <div class="col-lg-4 col-md-3 col-sm-10 col-12 d-block m-auto"><br>
-                  <a href="user_product.jsp?cate=<%=category%>">
-                   <div class="card">
+                <div class="col-lg-4 col-md-3 col-sm-10 col-12 d-block m-auto"><br>
+                 <a href="user_product.jsp?cate=<%=category%>">
+                  <div class="card index_category">
                     <img class="card-img-top categori" src="getimage.jsp?category=<%=category%>"/>
                     <div class="card-body product_category">
                         <h4 class="card-title" style="color:#009900"><center><%=category%></center></h4>
                     </div>
                  </div> 
                  </a>
-                 </div>
+                </div>
                
                  <%}
             }
@@ -163,35 +158,37 @@
        <!--ending categories section-->
         </div>
        </div>
-       <br>
+       
+       <br><br><br>
        <footer>
            <%@include file="footer.jsp"%>     
        </footer>
-        <script type="text/javascript">
-         $(document).ready(function(){
-           $("#search").keyup(function(){
-            var searchText=$(this).val();
-            if(searchText!=''){
-                $.ajax({
-                    url:'action.jsp',
-                    method:'post',
-                    data:{query:searchText},
-                    success:function(response){
-                      $("#show-list").html(response);  
-                    }
-                });
-            }
-            else
-            {
-                $("#show-list").html('');
-            }
-           });
-           $(document).on('click','a',function(){
-               $("#search").val($(this).text());
-               $("#show-list").html('');
-           });       
-         });
-        
+       
+     <!--Ajax working code for live search-->
+     <script type="text/javascript"> 
+      //   $(document).ready(function(){
+        //   $("#search").keyup(function(){
+          //  var searchText=$(this).val();
+         //   if(searchText!=''){
+           //     $.ajax({
+           //         url:'action.jsp',
+             //       method:'post',
+             //       data:{query:searchText},
+               ////     success:function(response){
+                   //   $("#show-list").html(response);  
+                   // }
+               // });
+           // }
+           // else
+           // {
+             //   $("#show-list").html('');
+           // }
+          // });
+        //   $(document).on('click','a',function(){
+          //     $("#search").val($(this).text());
+            //   $("#show-list").html('');
+          // });       
+         //});      
         
        </script>
    </body>

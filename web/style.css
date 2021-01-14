@@ -17,14 +17,15 @@ and open the template in the editor.
     font-size:20px;
 }
 
-
-/*.search{
-    background:darkgray; 
-    height:200px;
-    width:100%;
-   padding:70px 10px;
-}*/ 
-
+ .index_category img:hover
+{
+   transform:scale(1.1);
+   cursor:zoom-in;
+}
+.index_category img{
+   max-width:100%;
+   transition:transform .5s ease;
+}
 .backbody{
    background: url(img/b1.jpg)no-repeat center center fixed;
     background-size: cover;
@@ -177,8 +178,9 @@ box-shadow: 1px 20px 151px 103px rgba(0,0,0,0.75);
     font-size:20px;
     font-weight:bold;
     margin-top:10px;
-    color:#33cc00;
+    color:black;
 }
 #message.disp{
     visibility:visible;
 }
+
